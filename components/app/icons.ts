@@ -1,0 +1,92 @@
+import { FishingHookIcon } from "lucide-react";
+import {
+  ArrowCircleUp,
+  ArrowsLeftRight,
+  Bell,
+  BookmarkSimple,
+  BookOpenText,
+  ChartBarHorizontal,
+  ChartScatter,
+  ChatCircle,
+  ClipboardText,
+  Clock,
+  Compass,
+  FilmScript,
+  FilmSlate,
+  Fire,
+  Gauge,
+  GearSix,
+  Heart,
+  House,
+  Images,
+  Lightbulb,
+  ListNumbers,
+  MagnifyingGlassPlus,
+  Microphone,
+  MusicNotes,
+  PaperPlaneTilt,
+  PenNib,
+  Play,
+  Quotes,
+  Sparkle,
+  Stack,
+  Timer,
+  TrendUp,
+  FilmReel,
+  Users,
+  UserSound,
+} from "@phosphor-icons/react/dist/ssr";
+
+/**
+ * One icon per concept, used everywhere (docs/04 §4). Phosphor, regular weight; navigation uses
+ * the duotone weight for the active item. Reel metrics follow Instagram's own vocabulary:
+ * play = views, heart = likes, bubble = comments, plane = share, bookmark = save.
+ * The logo is the brand mark, not an interface icon, so it stays separate.
+ */
+export const AppIcon = {
+  logo: FishingHookIcon,
+  // navigation
+  home: House,
+  discover: Compass,
+  studio: PenNib,
+  scripts: FilmScript,
+  yourReels: FilmReel,
+  brand: UserSound,
+  reels: FilmSlate,
+  context: UserSound,
+  settings: GearSix,
+  notifications: Bell,
+  // reel metrics and actions
+  views: Play,
+  likes: Heart,
+  comments: ChatCircle,
+  share: PaperPlaneTilt,
+  save: BookmarkSimple,
+  audio: MusicNotes,
+  carousel: Images,
+  multiple: TrendUp,
+  hot: Fire,
+  // breakdown
+  breakdown: MagnifyingGlassPlus,
+  firstSeconds: Timer,
+  structure: ChartBarHorizontal,
+  why: Lightbulb,
+  borrow: ClipboardText,
+  template: Quotes,
+  transcript: BookOpenText,
+  // writing
+  write: PenNib,
+  idea: Lightbulb,
+  pillar: Stack,
+  voice: Microphone,
+  length: Clock,
+  ai: Sparkle,
+  angleHook: Quotes,
+  angleStructure: ListNumbers,
+  angleCounter: ArrowsLeftRight,
+  // niche
+  accounts: Users,
+  map: ChartScatter,
+  upgrade: ArrowCircleUp,
+  quota: Gauge,
+} as const;

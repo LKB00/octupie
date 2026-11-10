@@ -1,0 +1,312 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Single source of truth for colours, type, radii, shadows and motion. */
+@import "../design/tokens.css";
+
+/* Dark mode follows tokens.css: the OS preference unless <html data-theme> overrides it.
+   Components rarely need this variant because the tokens themselves switch. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+/* next/font gives each family a hashed name, so point the token font stacks at
+   the variables set on <html> in app/layout.tsx. */
+:root {
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* shadcn/ui variable names, aliased to our tokens so primitives never carry their own colours */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+  --primary: var(--brand);
+  --primary-foreground: var(--text-on-brand);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--text);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--text);
+  --muted-foreground: var(--text-muted);
+  --destructive: var(--danger);
+  --input: var(--border-strong);
+  --ring: var(--brand);
+  --radius: var(--r-md);
+}
+
+/* Tailwind mapping from the bottom of design/tokens.css, plus the tokens it leaves out. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-overlay: var(--overlay);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-on-brand: var(--text-on-brand);
+  --color-on-hot: var(--text-on-hot);
+  --color-scrim: var(--scrim);
+  --color-scrim-strong: var(--scrim-strong);
+  --color-glass: var(--glass);
+  --color-on-media: var(--on-media);
+  --color-media: var(--media-bg);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-edge: var(--edge);
+  --color-brand: var(--brand);
+  --color-ig-blue: var(--ig-blue);
+  --color-ig-button: var(--ig-button);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-weak: var(--brand-weak);
+  --color-brand-ring: var(--brand-ring);
+  --color-hot: var(--hot);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-tint-violet: var(--tint-violet);
+  --color-tint-violet-bg: var(--tint-violet-bg);
+  --color-tint-amber: var(--tint-amber);
+  --color-tint-amber-bg: var(--tint-amber-bg);
+  --color-tint-sky: var(--tint-sky);
+  --color-tint-sky-bg: var(--tint-sky-bg);
+  --color-tint-rose: var(--tint-rose);
+  --color-tint-rose-bg: var(--tint-rose-bg);
+  --color-tint-mint: var(--tint-mint);
+  --color-tint-mint-bg: var(--tint-mint-bg);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+
+  /* shadcn aliases (bg-muted is intentionally not mapped: "muted" is text colour here) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --radius-none: var(--r-none);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+  --radius-2xl: var(--r-2xl);
+  --radius-full: var(--r-full);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-card: var(--shadow-card);
+  --shadow-raised: var(--shadow-raised);
+  --shadow-pop: var(--shadow-pop);
+  --shadow-button: var(--shadow-button);
+  --shadow-glow: var(--shadow-glow);
+  --shadow-selected: var(--shadow-selected);
+
+  --ease-out: var(--ease-out);
+
+  --animate-shimmer: shimmer 1.2s linear infinite;
+  --animate-dot: dot 1.2s ease-in-out infinite;
+  --animate-text-shimmer: text-shimmer 2s linear infinite;
+  @keyframes dot {
+    0%,
+    80%,
+    100% {
+      opacity: 0.3;
+      transform: translateY(0);
+    }
+    40% {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
+  @keyframes text-shimmer {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: -100% 0;
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    font-optical-sizing: auto;
+    font-feature-settings: "cv11", "ss01";
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+    }
+  }
+  /* One visible focus ring for every interactive element (CLAUDE.md rule 8). */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--brand-weak);
+  }
+}
+
+/*
+ * Type scale (docs/04-DESIGN-SYSTEM.md §3). One family (Inter, optical sizes on) plus mono.
+ * Use only these roles; never set font sizes ad hoc in components.
+ *
+ *   display     40/48  600  -0.025em   one per page at most: Home hero, Studio start
+ *   title       28/36  600  -0.02em    page title (h1)
+ *   section     18/26  600  -0.012em   section header (h2)
+ *   card-title  15/22  600  -0.006em   card / panel / list-item title (h3)
+ *   body        15/24  400             reading text
+ *   body-sm     14/20  400             UI text, table cells, descriptions
+ *   label       13/18  500             controls, tabs, field labels, badges
+ *   caption     12/16  400             meta: ages, counts, helper text
+ *   overline    11/16  600  +0.06em    uppercase group labels
+ *   kpi         28/36  600  tabular    big numbers in stat tiles
+ *   stat        18/24  600  tabular    inline numbers (profile stats, counts)
+ *   mono        13/20  400             hook templates
+ */
+@utility type-display {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  text-wrap: balance;
+  @media (width >= 48rem) {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+@utility type-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  @media (width >= 48rem) {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+@utility type-section {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.012em;
+  font-weight: 600;
+}
+@utility type-card-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -0.006em;
+  font-weight: 600;
+}
+@utility type-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 400;
+}
+@utility type-body-sm {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+}
+@utility type-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+}
+@utility type-caption {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+@utility type-overline {
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+@utility type-kpi {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+@utility type-stat {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+@utility type-number {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+@utility type-mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}

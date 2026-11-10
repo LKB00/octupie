@@ -1,0 +1,222 @@
+/* Octupie design tokens — import once in app/globals.css.
+   Light is default; dark follows the OS unless data-theme is set on <html>.
+
+   Direction (v2): calm, soft SaaS. An inset app frame on a tinted canvas, white
+   surfaces with 12–20px radii, layered soft shadows, tinted icon tiles, one violet
+   brand used for primary actions and selection. Every text pair passes WCAG AA. */
+
+:root {
+  /* surfaces */
+  --bg: #f3f3f7; /* canvas behind the app frame */
+  --surface: #ffffff; /* panels, cards */
+  --surface-2: #f6f6f9; /* subtle fill, hover, inputs at rest */
+  --surface-3: #ececf2; /* tracks, pressed */
+  --overlay: rgba(15, 15, 25, 0.42);
+
+  /* text */
+  --text: #16161d;
+  --text-muted: #5f5f6e;
+  --text-faint: #6b6b7d;
+  --text-on-brand: #ffffff;
+  --text-on-hot: #16161d;
+
+  /* lines */
+  --border: #e9e9f0;
+  --border-strong: #d6d6e0;
+  --edge: #16161d; /* ink: dark buttons, strong outlines */
+
+  /* brand */
+  --brand: #6d4aff;
+  --brand-hover: #5d3af0;
+  --brand-strong: #5530e8; /* brand text on light surfaces */
+  /* Instagram's link/button blue, deepened to pass WCAG AA as text (used only in the IG embed) */
+  --ig-blue: #0073e6;
+  /* Filled IG button: same in both themes so white text keeps AA contrast */
+  --ig-button: #0073e6;
+  --brand-weak: #f1edff;
+  --brand-ring: rgba(109, 74, 255, 0.28);
+  --hot: #ff5c35; /* ≥ 10× multiples */
+
+  /* status */
+  --success: #15803d;
+  --success-bg: #e9f7ef;
+  --warning: #b45309;
+  --warning-bg: #fff5e6;
+  --danger: #c0262d;
+  --danger-bg: #fdecec;
+
+  /* tinted icon tiles (fg on bg passes AA) */
+  --tint-violet: #5530e8;
+  --tint-violet-bg: #f1edff;
+  --tint-amber: #c2410c;
+  --tint-amber-bg: #fff4e5;
+  --tint-sky: #1d4ed8;
+  --tint-sky-bg: #e8f1ff;
+  --tint-rose: #be123c;
+  --tint-rose-bg: #ffecef;
+  --tint-mint: #047857;
+  --tint-mint-bg: #e7f8f0;
+
+  /* overlays on photos and video (same in both themes) */
+  --scrim: rgba(10, 10, 16, 0.45);
+  --scrim-strong: rgba(10, 10, 16, 0.72);
+  --glass: rgba(255, 255, 255, 0.92);
+  --on-media: #ffffff;
+  --media-bg: #000000; /* behind video, as on Instagram */
+
+  /* soft washes for hero areas and highlighted cards */
+  --wash-hero: radial-gradient(60% 120% at 0% 0%, #f3e8ff 0%, transparent 60%),
+    radial-gradient(50% 120% at 100% 0%, #e6f0ff 0%, transparent 60%);
+  --wash-violet: linear-gradient(135deg, #f1edff 0%, #ffffff 60%);
+
+  /* charts */
+  --chart-1: #6d4aff;
+  --chart-2: #ff7a45;
+  --chart-3: #12a87a;
+  --chart-4: #f2a516;
+  --chart-5: #e5679b;
+  --chart-6: #2f80ed;
+  --chart-7: #4a3aa7;
+
+  /* radius */
+  --r-none: 0px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --r-2xl: 24px;
+  --r-full: 9999px;
+
+  /* elevation */
+  --shadow-xs: 0 1px 2px rgba(22, 22, 40, 0.05);
+  --shadow-card: 0 1px 2px rgba(22, 22, 40, 0.04), 0 4px 12px -4px rgba(22, 22, 40, 0.06);
+  --shadow-raised: 0 1px 2px rgba(22, 22, 40, 0.06), 0 12px 28px -12px rgba(22, 22, 40, 0.16);
+  --shadow-pop: 0 2px 6px rgba(22, 22, 40, 0.06), 0 16px 40px -12px rgba(22, 22, 40, 0.22);
+  --shadow-button: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 1px 2px rgba(22, 22, 40, 0.18);
+  --shadow-glow: 0 0 0 4px var(--brand-ring);
+  --shadow-selected: 0 0 0 1px rgba(22, 22, 40, 0.06), 0 1px 3px rgba(22, 22, 40, 0.1);
+
+  /* type */
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+
+  /* layout */
+  --sidebar-w: 248px;
+  --rail-w: 300px;
+  --content-max: 1280px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0b0f;
+    --surface: #131318;
+    --surface-2: #1a1a21;
+    --surface-3: #24242d;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --text: #f2f2f5;
+    --text-muted: #a3a3b2;
+    --text-faint: #8a8a98;
+    --border: #25252e;
+    --border-strong: #34343f;
+    --edge: #f2f2f5;
+    --brand: #6a4cf0;
+    --brand-hover: #7a5dff;
+    --brand-strong: #a993ff;
+    --ig-blue: #4ca3ff;
+    --brand-weak: rgba(140, 114, 255, 0.14);
+    --brand-ring: rgba(140, 114, 255, 0.35);
+    --hot: #ff7a52;
+    --success: #4ade80;
+    --success-bg: rgba(74, 222, 128, 0.12);
+    --warning: #fbbf24;
+    --warning-bg: rgba(251, 191, 36, 0.12);
+    --danger: #f87171;
+    --danger-bg: rgba(248, 113, 113, 0.12);
+    --tint-violet: #b9a8ff;
+    --tint-violet-bg: rgba(140, 114, 255, 0.16);
+    --tint-amber: #fdba74;
+    --tint-amber-bg: rgba(251, 146, 60, 0.14);
+    --tint-sky: #93c5fd;
+    --tint-sky-bg: rgba(96, 165, 250, 0.14);
+    --tint-rose: #fda4af;
+    --tint-rose-bg: rgba(251, 113, 133, 0.14);
+    --tint-mint: #6ee7b7;
+    --tint-mint-bg: rgba(52, 211, 153, 0.14);
+    --wash-hero: radial-gradient(60% 120% at 0% 0%, rgba(140, 114, 255, 0.16) 0%, transparent 60%),
+      radial-gradient(50% 120% at 100% 0%, rgba(96, 165, 250, 0.1) 0%, transparent 60%);
+    --wash-violet: linear-gradient(135deg, rgba(140, 114, 255, 0.14) 0%, transparent 60%);
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 28px -12px rgba(0, 0, 0, 0.6);
+    --shadow-pop: 0 16px 40px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    --shadow-selected: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b0b0f;
+  --surface: #131318;
+  --surface-2: #1a1a21;
+  --surface-3: #24242d;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --text: #f2f2f5;
+  --text-muted: #a3a3b2;
+  --text-faint: #8a8a98;
+  --border: #25252e;
+  --border-strong: #34343f;
+  --edge: #f2f2f5;
+  --brand: #6a4cf0;
+  --brand-hover: #7a5dff;
+  --brand-strong: #a993ff;
+  --ig-blue: #4ca3ff;
+  --brand-weak: rgba(140, 114, 255, 0.14);
+  --brand-ring: rgba(140, 114, 255, 0.35);
+  --hot: #ff7a52;
+  --success: #4ade80;
+  --success-bg: rgba(74, 222, 128, 0.12);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.12);
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.12);
+  --tint-violet: #b9a8ff;
+  --tint-violet-bg: rgba(140, 114, 255, 0.16);
+  --tint-amber: #fdba74;
+  --tint-amber-bg: rgba(251, 146, 60, 0.14);
+  --tint-sky: #93c5fd;
+  --tint-sky-bg: rgba(96, 165, 250, 0.14);
+  --tint-rose: #fda4af;
+  --tint-rose-bg: rgba(251, 113, 133, 0.14);
+  --tint-mint: #6ee7b7;
+  --tint-mint-bg: rgba(52, 211, 153, 0.14);
+  --wash-hero: radial-gradient(60% 120% at 0% 0%, rgba(140, 114, 255, 0.16) 0%, transparent 60%),
+    radial-gradient(50% 120% at 100% 0%, rgba(96, 165, 250, 0.1) 0%, transparent 60%);
+  --wash-violet: linear-gradient(135deg, rgba(140, 114, 255, 0.14) 0%, transparent 60%);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 28px -12px rgba(0, 0, 0, 0.6);
+  --shadow-pop: 0 16px 40px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-selected: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Tailwind mapping lives in app/globals.css (@theme inline). */

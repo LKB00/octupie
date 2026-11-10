@@ -1,0 +1,12 @@
+# Spec and kit files are kept exactly as delivered
+docs/
+design/
+db/
+fixtures/
+CLAUDE.md
+README.md
+AGENTS.md
+pnpm-lock.yaml
+.next/
+playwright-report/
+test-results/
